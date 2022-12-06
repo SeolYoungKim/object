@@ -16,10 +16,10 @@ import java.time.LocalTime;
 public class DiscountCondition {
 
     private DiscountConditionType type;
-    private int sequence;
-    private DayOfWeek dayOfWeek;
-    private LocalTime startTime;
-    private LocalTime endTime;
+    private int sequence;  // 순번 condition일 때만 초기화
+    private DayOfWeek dayOfWeek;  // 기간 condition일 때만 초기화
+    private LocalTime startTime;  // 기간 condition일 때만 초기화
+    private LocalTime endTime;    // 기간 condition일 때만 초기화
 
     public boolean isSatisfiedBy(Screening screening) {
         if (type == DiscountConditionType.PERIOD) {
@@ -30,14 +30,15 @@ public class DiscountCondition {
     }
 
 
-    private boolean isSatisfiedByPeriod(Screening screening) {
-        return dayOfWeek.equals(screening.whenScreened().getDayOfWeek()) &&
-                !startTime.isAfter(screening.whenScreened().toLocalTime()) &&
-                endTime.isAfter(screening.whenScreened().toLocalTime());
-    }
+    // dayOfWeek, startTime, endTime만 사용
+//    private boolean isSatisfiedByPeriod(Screening screening) {  // 서로 다른 이유로 변경되는 메서드
+//        return dayOfWeek.equals(screening.whenScreened().getDayOfWeek()) &&
+//                !startTime.isAfter(screening.whenScreened().toLocalTime()) &&
+//                endTime.isAfter(screening.whenScreened().toLocalTime());
+//    }
 
-    private boolean isSatisfiedBySequence(Screening screening) {
-        return sequence == screening.sequence();
-    }
-
+//    // sequence만 사용
+//    private boolean isSatisfiedBySequence(Screening screening) {  // 서로 다른 이유로 변경되는 메서드
+//        return sequence == screening.sequence();
+//    }
 }
