@@ -1,8 +1,5 @@
 package chapter_05;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-
 /**
  * 변경에 취약한 클래스
  * - 수정해야 하는 이유가 3개다
@@ -13,21 +10,25 @@ import java.time.LocalTime;
  * - 응집도가 낮다 == 서로 연관성이 없는 기능이나 데이터가 하나의 클래스 안에 뭉쳐져있다
  * - 따라서, 변경의 이유에 따라 클래스를 분리해야 함.
  */
-public class DiscountCondition {
+public interface DiscountCondition {
 
-    private DiscountConditionType type;
-    private int sequence;  // 순번 condition일 때만 초기화
-    private DayOfWeek dayOfWeek;  // 기간 condition일 때만 초기화
-    private LocalTime startTime;  // 기간 condition일 때만 초기화
-    private LocalTime endTime;    // 기간 condition일 때만 초기화
+    boolean isSatisfiedBy(Screening screening);
 
-    public boolean isSatisfiedBy(Screening screening) {
-        if (type == DiscountConditionType.PERIOD) {
-            return isSatisfiedByPeriod(screening);
-        }
 
-        return isSatisfiedBySequence(screening);
-    }
+
+//    private DiscountConditionType type;
+//    private int sequence;  // 순번 condition일 때만 초기화
+//    private DayOfWeek dayOfWeek;  // 기간 condition일 때만 초기화
+//    private LocalTime startTime;  // 기간 condition일 때만 초기화
+//    private LocalTime endTime;    // 기간 condition일 때만 초기화
+//
+//    public boolean isSatisfiedBy(Screening screening) {
+//        if (type == DiscountConditionType.PERIOD) {
+//            return isSatisfiedByPeriod(screening);
+//        }
+//
+//        return isSatisfiedBySequence(screening);
+//    }
 
 
     // dayOfWeek, startTime, endTime만 사용
