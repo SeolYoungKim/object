@@ -1,10 +1,11 @@
 package chapter_08;
 
-import static chapter_05.Money.*;
+
+import static chapter_02.Money.ZERO;
 
 import chapter_02.DiscountPolicy;
+import chapter_02.Money;
 import chapter_02.Screening;
-import chapter_05.Money;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class OverlappedDiscountPolicy implements DiscountPolicy {
 
     @Override
     public Money calculateDiscountAmount(Screening screening) {
-        chapter_05.Money result = ZERO;
+        Money result = ZERO;
         for (DiscountPolicy each : discountPolicies) {
             result = result.plus(each.calculateDiscountAmount(screening));
         }

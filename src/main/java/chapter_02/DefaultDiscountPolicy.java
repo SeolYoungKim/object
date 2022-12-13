@@ -20,7 +20,7 @@ public abstract class DefaultDiscountPolicy implements DiscountPolicy {
     }
 
     // 부모 클래스에 기본적인 알고리즘의 흐름을 구현하고,
-    public final chapter_05.Money calculateDiscountAmount(Screening screening) {
+    public final Money calculateDiscountAmount(Screening screening) {
         for (DiscountCondition condition : conditions) {
             if (condition.isSatisfiedBy(screening)) {
                 return getDiscountAmount(screening);  // 메서드가 컴파일 시점이 아닌, 실행 시점에 결정된다.

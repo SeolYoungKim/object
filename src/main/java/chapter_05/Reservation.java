@@ -1,5 +1,7 @@
 package chapter_05;
 
+import chapter_02.Money;
+
 public class Reservation {
 
     private Customer customer;
