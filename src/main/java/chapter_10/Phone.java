@@ -8,11 +8,13 @@ import java.util.List;
 public class Phone {
     private Money amount;
     private Duration seconds;
+    private double taxRate;
     private List<Call> calls = new ArrayList<>();
 
-    public Phone(Money amount, Duration seconds) {
+    public Phone(Money amount, Duration seconds, double taxRate) {
         this.amount = amount;
         this.seconds = seconds;
+        this.taxRate = taxRate;
     }
 
     public void call(Call call) {
@@ -31,14 +33,21 @@ public class Phone {
         return calls;
     }
 
+    public double taxRate() {
+        return taxRate;
+    }
+
     public Money calculateFee() {
         Money result = Money.ZERO;
 
         for (Call call : calls) {
-            result = result.plus(
-                    amount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
+            result = result.plus(calculateCallFee(call));
         }
 
         return result;
+    }
+
+    private Money calculateCallFee(Call call) {
+        return amount.times(call.getDuration().getSeconds() / seconds.getSeconds());
     }
 }
