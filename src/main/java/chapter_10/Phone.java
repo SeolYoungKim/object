@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Phone {
+public class Phone extends AbstractPhone {
     private Money amount;
     private Duration seconds;
     private double taxRate;
@@ -35,16 +35,6 @@ public class Phone {
 
     public double taxRate() {
         return taxRate;
-    }
-
-    public Money calculateFee() {
-        Money result = Money.ZERO;
-
-        for (Call call : calls) {
-            result = result.plus(calculateCallFee(call));
-        }
-
-        return result;
     }
 
     private Money calculateCallFee(Call call) {
