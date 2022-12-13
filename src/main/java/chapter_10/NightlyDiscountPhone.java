@@ -2,25 +2,20 @@ package chapter_10;
 
 import chapter_02.Money;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
-public class NightlyDiscountPhone extends AbstractPhone {
+public class NightlyDiscountPhone extends Phone {
     private static final int LATE_NIGHT_HOUR = 22;
 
     private Money nightlyAmount;
     private Money regularAmount;
     private Duration seconds;
-    private List<Call> calls = new ArrayList<>();
 
-    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
+    public NightlyDiscountPhone(double taxRate, Money nightlyAmount, Money regularAmount,
+            Duration seconds) {
+        super(taxRate);
         this.nightlyAmount = nightlyAmount;
         this.regularAmount = regularAmount;
         this.seconds = seconds;
-    }
-
-    public void call(Call call) {
-        calls.add(call);
     }
 
     public Money amount() {
@@ -31,11 +26,9 @@ public class NightlyDiscountPhone extends AbstractPhone {
         return seconds;
     }
 
-    public List<Call> calls() {
-        return calls;
-    }
 
-    private Money calculateCallFee(Call call) {
+    @Override
+    protected Money calculateCallFee(Call call) {
         if (call.from().getHour() >= LATE_NIGHT_HOUR) {
             return nightlyAmount.times(call.getDuration().getSeconds() / seconds.getSeconds());
         }
