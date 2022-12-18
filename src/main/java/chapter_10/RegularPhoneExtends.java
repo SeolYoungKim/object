@@ -3,12 +3,11 @@ package chapter_10;
 import chapter_02.Money;
 import java.time.Duration;
 
-public class RegularPhone extends Phone {
+public class RegularPhoneExtends extends PhoneExtends {
     private Money amount;
     private Duration seconds;
 
-    public RegularPhone(double taxRate, Money amount, Duration seconds) {
-        super(taxRate);
+    public RegularPhoneExtends(double taxRate, Money amount, Duration seconds) {
         this.amount = amount;
         this.seconds = seconds;
     }
