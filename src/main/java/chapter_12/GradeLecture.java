@@ -12,6 +12,11 @@ public class GradeLecture extends Lecture {
     }
 
     @Override
+    public String getEvaluationMethod() {
+        return "Grade";
+    }
+
+    @Override
     public String evaluate() {
         return super.evaluate() + ", " + gradesStatistics();
     }

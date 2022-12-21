@@ -12,7 +12,20 @@ public class Lecture {
     public Lecture(int pass, String title) {
         this.pass = pass;
         this.title = title;
+    }
 
+    public Lecture(int pass, String title, List<Integer> scores) {
+        this.pass = pass;
+        this.title = title;
+        this.scores.addAll(scores);
+    }
+
+    public String stats() {
+        return String.format("Title: %s, Evaluation Method: %s", title, getEvaluationMethod());
+    }
+
+    public String getEvaluationMethod() {
+        return "Pass or Fail";
     }
 
     public double average() {
