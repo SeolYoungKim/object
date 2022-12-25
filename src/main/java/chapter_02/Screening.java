@@ -49,4 +49,9 @@ public class Screening {
     private Money calculateFee(int audienceCount) {
         return movie.calculateMovieFee(this).times(audienceCount);  // Screening은 Movie에게 calculateMovieFee라는 메세지를 전송한다.
     }
+
+    public LocalDateTime getEndTime() {
+        //TODO 이건 걍 가라로 만들어둔거임
+        return whenScreened;
+    }
 }
