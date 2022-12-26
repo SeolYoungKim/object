@@ -6,7 +6,7 @@ import java.time.Duration;
 public class Application {
     public static void main(String[] args) {
         Phone phone = new Phone(
-                new TaxablePolicy(new RegularPolicy(
+                new TaxablePolicy(new FixedFeePolicy(
                         Money.wons(1000),
                         Duration.ofSeconds(30)
                 ), 0.05)
@@ -14,7 +14,7 @@ public class Application {
 
         Phone phone1 = new Phone(
                 new RateDiscountablePolicy(new TaxablePolicy(
-                        new RegularPolicy(Money.wons(1000), Duration.ofSeconds(30)),
+                        new FixedFeePolicy(Money.wons(1000), Duration.ofSeconds(30)),
                         0.05), Money.wons(1000)));
 
     }
